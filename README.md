@@ -8,7 +8,7 @@ And a REST endpoint '/api/tracks' which should return all the tracks in the data
 
 However with the current configuration, the description field is not returned 😢 
 
-SUGGESTIONS ARE WELCOME! 
+Resolved #LessIsMore
 
 
 ## Running the application
