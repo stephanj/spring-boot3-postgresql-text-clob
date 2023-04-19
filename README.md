@@ -45,6 +45,17 @@ Now run the Spring Boot application with:
 ./mvnw spring-boot:run
 ```
 
+### Hibernate 5 and SpringBoot 2
+
+FYI - The below annotations work with Hibernate 5.3 and Spring Boot 2 but not with Hibernate 6 because @Type(type="") does not exist anymore...
+
+```java
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "description")
+    private String description;
+```
+
 ### The error message 
 
 When calling the REST endpoint /api/tracks, the following error message is returned:
