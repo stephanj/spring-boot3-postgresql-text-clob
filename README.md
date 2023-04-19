@@ -56,6 +56,15 @@ FYI - The below annotations work with Hibernate 5.3 and Spring Boot 2 but not wi
     private String description;
 ```
 
+### The solution
+
+Thanks to feedback from [Oliver Drotbohm](https://twitter.com/odrotbohm/status/1648748263435034643)
+
+Just remove the @Lob annotation and the ColumnDefintion field #LessIsMore !!
+
+![example](https://user-images.githubusercontent.com/179457/233162866-8925ee5e-f3ec-4d6e-8c02-87f011842bb0.jpg)
+
+
 ### The error message 
 
 When calling the REST endpoint /api/tracks, the following error message is returned:
