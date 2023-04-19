@@ -5,7 +5,7 @@ services:
     image: postgres:12.9-alpine
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - ./data:/var/lib/postgresql/data
     ports:
