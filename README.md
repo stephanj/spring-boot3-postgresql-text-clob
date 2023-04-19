@@ -29,13 +29,13 @@ Add a user "postgres" with password "postgres".
 
 ### Track table DDL
 
-    ```sql
+```sql  
     CREATE TABLE track (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description TEXT
     );
-    ```
+```
 
 ### Spring Boot
 
@@ -49,7 +49,7 @@ Now run the Spring Boot application with:
 
 When calling the REST endpoint /api/tracks, the following error message is returned:
 
-```agsl
+```java
 jpa.JpaSystemException: Unable to extract JDBC value for position `2`] with root cause
 
 org.postgresql.util.PSQLException: Bad value for type long : Developer candy: stuff we want to know about but dont (generally) at work, Robotics, biological computing, cybernetics, AI, new toys, tomorrows world
