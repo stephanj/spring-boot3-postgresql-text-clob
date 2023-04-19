@@ -30,7 +30,7 @@ Add a user "postgres" with password "postgres".
 ### Track table DDL
 
 ```sql  
-    CREATE TABLE track (
+    CREATE TABLE cfp_track (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description TEXT
