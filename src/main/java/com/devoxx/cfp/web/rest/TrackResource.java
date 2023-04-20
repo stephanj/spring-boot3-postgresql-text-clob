@@ -43,7 +43,7 @@ public class TrackResource {
 
     @JsonView({DetailView.class})
     @GetMapping("/tracks/{id}")
-    public ResponseEntity<TrackDTO> getAllTracks(@PathVariable Long id) {
+    public ResponseEntity<TrackDTO> getTrack(@PathVariable Long id) {
         log.debug("REST request to get all Tracks");
         return ResponseEntity.ok(trackService.findById(id));
     }
