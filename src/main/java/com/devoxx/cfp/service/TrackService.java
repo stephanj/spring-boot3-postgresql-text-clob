@@ -23,6 +23,11 @@ public class TrackService {
         this.trackRepository = trackRepository;
     }
 
+    /**
+     * Get one track by id.
+     * @param id the id of the entity
+     * @return the entity
+     */
     public TrackDTO findById(final Long id) {
         log.debug("Request to get Track by id : {}", id);
 
