@@ -23,6 +23,14 @@ public class TrackService {
         this.trackRepository = trackRepository;
     }
 
+    public TrackDTO findById(final Long id) {
+        log.debug("Request to get Track by id : {}", id);
+
+        return trackRepository.findById(id)
+            .map(trackMapper::toDto)
+            .orElseThrow();
+    }
+
     /**
      * Get all the tracks.
      *

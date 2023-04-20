@@ -31,8 +31,7 @@ public class Track implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Lob
-    @Column(name = "description", columnDefinition = "text")
+    @Column(name = "description")
     private String description;
 
     public Long getId() {
