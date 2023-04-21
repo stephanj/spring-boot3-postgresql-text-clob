@@ -1,8 +1,8 @@
 package com.devoxx.cfp.domain;
 
+import com.devoxx.cfp.domain.enumeration.ProposalState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,12 +11,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A Track.
+ * A Comment.
  */
 @Entity
-@Table(name = "cfp_track")
+@Table(name = "cfp_comment")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Track implements Serializable {
+public class Comment implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -27,11 +27,10 @@ public class Track implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 3)
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "state", nullable = false)
+    private ProposalState state;
 
-    @Column(name = "description")
+    @Column(name = "description")       // Defined as TEXT in the PostgreSQL database.
     private String description;
 
     public Long getId() {
@@ -42,24 +41,19 @@ public class Track implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public ProposalState getState() {
+        return state;
     }
 
-    public Track name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setState(ProposalState state) {
+        this.state = state;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Track description(String description) {
+    public Comment description(String description) {
         this.description = description;
         return this;
     }
@@ -76,11 +70,11 @@ public class Track implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Track track = (Track) o;
-        if (track.getId() == null || getId() == null) {
+        Comment comment = (Comment) o;
+        if (comment.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), track.getId());
+        return Objects.equals(getId(), comment.getId());
     }
 
     @Override
@@ -91,10 +85,10 @@ public class Track implements Serializable {
     @Override
     public String toString() {
         return """
-            Track{\
+            Comment{\
             id=\
             """ + getId() +
-            ", name='" + getName() + "'" +
+            ", state='" + getState() + "'" +
             ", description='" + getDescription() + "'" +
             "}";
     }
