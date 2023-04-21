@@ -1,9 +1,9 @@
 package com.devoxx.cfp.web.rest;
 
 import com.devoxx.cfp.service.CommentService;
-import com.devoxx.cfp.service.dto.views.Detail;
+import com.devoxx.cfp.service.dto.views.DetailView;
 import com.devoxx.cfp.service.dto.CommentDTO;
-import com.devoxx.cfp.service.dto.views.List;
+import com.devoxx.cfp.service.dto.views.ListView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,14 +32,14 @@ public class CommentResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of tracks in body
      */
-    @JsonView({List.class})
+    @JsonView({ListView.class})
     @GetMapping("/comments")
     public ResponseEntity<java.util.List<CommentDTO>> getAllComments() {
         log.debug("REST request to get all Comments");
         return ResponseEntity.ok(commentService.findAll());
     }
 
-    @JsonView({Detail.class})
+    @JsonView({DetailView.class})
     @GetMapping("/comments/{id}")
     public ResponseEntity<CommentDTO> getComment(@PathVariable Long id) {
         log.debug("REST request to get Comment by id : {}", id);

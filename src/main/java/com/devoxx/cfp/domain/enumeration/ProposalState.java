@@ -3,7 +3,7 @@ package com.devoxx.cfp.domain.enumeration;
 public enum ProposalState {
 
     ACCEPTED,
-    DECLINED,
+    SUBMITTED,
     DELETED,
-    SUBMITTED
+    DECLINED
 }

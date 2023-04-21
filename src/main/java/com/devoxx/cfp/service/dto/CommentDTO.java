@@ -1,14 +1,14 @@
 package com.devoxx.cfp.service.dto;
 
-import com.devoxx.cfp.service.dto.views.Detail;
-import com.devoxx.cfp.service.dto.views.List;
+import com.devoxx.cfp.service.dto.views.DetailView;
+import com.devoxx.cfp.service.dto.views.ListView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public record CommentDTO(
-    @JsonView({Detail.class, List.class})
+    @JsonView({DetailView.class, ListView.class})
     Long id,
-    @JsonView({Detail.class, List.class})
+    @JsonView({DetailView.class, ListView.class})
     String state,
-    @JsonView({Detail.class, List.class})
+    @JsonView({DetailView.class, ListView.class})
     String description) {
 }

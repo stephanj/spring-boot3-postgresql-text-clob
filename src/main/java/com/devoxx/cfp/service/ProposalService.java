@@ -1,16 +1,20 @@
 package com.devoxx.cfp.service;
 
+import com.devoxx.cfp.domain.Proposal;
 import com.devoxx.cfp.domain.enumeration.ProposalState;
 import com.devoxx.cfp.repository.ProposalRepository;
 import com.devoxx.cfp.service.dto.ProposalDTO;
 import com.devoxx.cfp.service.mapper.ProposalMapper;
+import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProposalService {
@@ -38,17 +42,53 @@ public class ProposalService {
             .orElseThrow();
     }
 
-    /**
-     * Get proposals by state.
-     * @param state the state of the entity
-     * @return the entities by state
-     */
-    public Page<ProposalDTO> findByState(Pageable pageable, ProposalState state) {
-        log.debug("Request to get proposal by state : {}", state);
+    /**import java.util.Optional;
 
-        return proposalRepository.findProposalsByState(pageable, state)
-            .map(proposalMapper::toDto);
+     /**
+     * Finds all proposals by their state.
+     *
+     * @param pageable the pagination information
+     * @param state the state of the proposal as a string
+     * @return a list of ProposalDTO objects with the specified state
+     */
+    public Optional<Page<ProposalDTO>> findByState(Pageable pageable, String state) {
+        log.info("Request to get proposal by state : '{}'", state);
+
+        Optional<ProposalState> proposalStateOpt = toProposalState(state);
+
+        if (proposalStateOpt.isEmpty()) {
+            log.error("Invalid proposal state: {}", state);
+            return Optional.empty();
+        }
+
+        ProposalState proposalState = proposalStateOpt.get();
+        Page<Proposal> foundProposals;
+        try {
+            foundProposals = proposalRepository.findProposalsByState(pageable, proposalState);
+        } catch (Exception e) {
+            log.error("Error fetching proposals by state: {}", state, e);
+            return Optional.empty();
+        }
+
+        log.info("Repository size: {}", foundProposals.getTotalElements());
+
+        return Optional.of(foundProposals.map(proposalMapper::toDto));
     }
+
+    /**
+     * Converts a string to a ProposalState enum value.
+     *
+     * @param state the state of the proposal as a string
+     * @return an Optional containing the corresponding ProposalState, or an empty Optional if the string is invalid
+     */
+    private Optional<ProposalState> toProposalState(String state) {
+        try {
+            return Optional.of(ProposalState.valueOf(state));
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return Optional.empty();
+        }
+    }
+
 
     /**
      * Get all the proposals.

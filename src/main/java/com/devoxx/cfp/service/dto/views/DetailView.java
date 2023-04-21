@@ -1,4 +1,4 @@
 package com.devoxx.cfp.service.dto.views;
 
-public interface Detail {
+public interface DetailView {
 }
