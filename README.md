@@ -1,15 +1,11 @@
-# The Spring Boot 3, Hibernate 6 and Postgresql (12) CLOB/TEXT challenge
+# The Spring Boot 3, Hibernate 6 and Postgresql 14
 
-This project is a simple example of how to use Spring Boot 3 and Postgresql 12 with CLOB/TEXT fields.
+This project is a simple example of how to use Spring Boot 3 and Postgresql 14.
 
-We have a 'Track' table which has a CLOB (text) field name 'description'.
+## The challenge
 
-And a REST endpoint '/api/tracks' which should return all the tracks in the database.
-
-However with the current configuration, the description field is not returned 😢 
-
-Resolved #LessIsMore
-
+Why doesn't the proposal REST call for a specific state work?
+No errors but also no results even if the table has values...
 
 ## Running the application
 
@@ -27,14 +23,25 @@ Run the PostgreSQL database with Docker using:
 Make sure a database with name "postgres" exists.
 Add a user "postgres" with password "postgres".
 
-### Track table DDL
+### Comment table DDL
 
 ```sql  
-    CREATE TABLE cfp_track (
+    CREATE TABLE cfp_comment (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description TEXT
     );
+```
+
+### Proposal table DDL
+
+```sql  
+   CREATE TABLE cfp_proposal (
+      id SERIAL PRIMARY KEY,
+   	title varchar(255) NOT NULL,
+	   description text NOT NULL,
+   	state varchar(20) NULL
+   );
 ```
 
 ### Spring Boot
