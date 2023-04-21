@@ -2,11 +2,6 @@
 
 This project is a simple example of how to use Spring Boot 3 and Postgresql 14.
 
-## The challenge
-
-Why doesn't the proposal REST call for a specific state work?
-No errors but also no results even if the table has values...
-
 ## Running the application
 
 Make sure you're using Java 17 which is enforced by the maven plugin.
