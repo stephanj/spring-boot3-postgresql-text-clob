@@ -27,7 +27,7 @@ Add a user "postgres" with password "postgres".
 
 ```sql  
     CREATE TABLE cfp_comment (
-        id SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description TEXT
     );
@@ -37,10 +37,10 @@ Add a user "postgres" with password "postgres".
 
 ```sql  
    CREATE TABLE cfp_proposal (
-      id SERIAL PRIMARY KEY,
-   	title varchar(255) NOT NULL,
-	   description text NOT NULL,
-   	state varchar(20) NULL
+	id SERIAL PRIMARY KEY,
+	title varchar(255) NOT NULL,
+	description text NOT NULL,
+	state varchar(20) NULL
    );
 ```
 
