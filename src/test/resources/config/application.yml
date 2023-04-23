@@ -1,0 +1,17 @@
+spring:
+    main:
+        allow-circular-references: true
+
+    application:
+        name: CFP
+
+    jpa:
+        properties:
+            hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+            hibernate:
+                show_sql: false
+
+    liquibase:
+        contexts: test
+        enabled: true
+        changeLog: classpath:db.changelog-master.yaml

@@ -1,7 +1,7 @@
 databaseChangeLog:
     - changeSet:
           id: 1
-          author: your_name
+          author: stephan
           changes:
               - createTable:
                     tableName: cfp_comment
