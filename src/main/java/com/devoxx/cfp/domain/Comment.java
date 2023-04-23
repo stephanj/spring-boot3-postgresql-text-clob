@@ -1,5 +1,6 @@
 package com.devoxx.cfp.domain;
 
+import com.devoxx.cfp.domain.enumeration.CommentState;
 import com.devoxx.cfp.domain.enumeration.ProposalState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -22,13 +23,12 @@ public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Column(name = "state", nullable = false)
-    private ProposalState state;
+    private CommentState state;
 
     @Column(name = "description")       // Defined as TEXT in the PostgreSQL database.
     private String description;
@@ -41,11 +41,11 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public ProposalState getState() {
+    public CommentState getState() {
         return state;
     }
 
-    public void setState(ProposalState state) {
+    public void setState(CommentState state) {
         this.state = state;
     }
 

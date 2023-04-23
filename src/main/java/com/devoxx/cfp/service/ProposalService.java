@@ -5,14 +5,12 @@ import com.devoxx.cfp.domain.enumeration.ProposalState;
 import com.devoxx.cfp.repository.ProposalRepository;
 import com.devoxx.cfp.service.dto.ProposalDTO;
 import com.devoxx.cfp.service.mapper.ProposalMapper;
-import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,16 +53,14 @@ public class ProposalService {
         log.info("Request to get proposal by state : '{}'", state);
 
         Optional<ProposalState> proposalStateOpt = toProposalState(state);
-
         if (proposalStateOpt.isEmpty()) {
             log.error("Invalid proposal state: {}", state);
             return Optional.empty();
         }
 
-        ProposalState proposalState = proposalStateOpt.get();
         Page<Proposal> foundProposals;
         try {
-            foundProposals = proposalRepository.findProposalsByState(pageable, proposalState);
+            foundProposals = proposalRepository.findProposalsByState(pageable, proposalStateOpt.get());
         } catch (Exception e) {
             log.error("Error fetching proposals by state: {}", state, e);
             return Optional.empty();

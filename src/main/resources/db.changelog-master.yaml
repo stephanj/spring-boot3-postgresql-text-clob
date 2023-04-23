@@ -1,0 +1,23 @@
+databaseChangeLog:
+    - changeSet:
+          id: 1
+          author: your_name
+          changes:
+              - createTable:
+                    tableName: cfp_comment
+                    columns:
+                        - column:
+                              name: id
+                              type: bigint
+                              autoIncrement: true
+                              constraints:
+                                  primaryKey: true
+                                  nullable: false
+                        - column:
+                              name: state
+                              type: varchar(255)
+                              constraints:
+                                  nullable: false
+                        - column:
+                              name: description
+                              type: text
